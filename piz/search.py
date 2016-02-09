@@ -2,7 +2,7 @@ from os import environ
 
 from googleapiclient.discovery import build
 
-from piz.exceptions import *
+from .exceptions import *
 
 
 class Searcher:
