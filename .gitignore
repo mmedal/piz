@@ -1,2 +1,6 @@
 .idea/*
 *.pyc
+/dist*
+piz.egg-info
+/build*
+.DS_Store
