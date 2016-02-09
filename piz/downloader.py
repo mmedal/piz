@@ -34,8 +34,8 @@ class Downloader:
 
         # Parse html and build download url from js script tag
         referer_html = r.text
-        soup = BeautifulSoup(referer_html, 'html.parser')
-        js = soup(text=re.compile('var e = function\(\)'))[0].parent.text.split('\n')
+        self.soup = BeautifulSoup(referer_html, 'html.parser')
+        js = self.soup(text=re.compile('var e = function\(\)'))[0].parent.text.split('\n')
         try:
             a = int(re.search('\.a = (\d+);', js[1]).group(1))
             b = int(re.search('b = (\d+);', js[3]).group(1))
@@ -70,6 +70,9 @@ class Downloader:
             print 'Download complete!'
         else:
             raise DownloadSubprocessError('Error during download. wget returned non-zero exit status.')
+
+    def get_file_size(self):
+        return float(self.soup(text=re.compile('Size:'))[0].next.next.text[0:-3])
 
     @staticmethod
     def check_wget_dependency():
