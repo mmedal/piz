@@ -12,6 +12,11 @@ setup(
         "console_scripts": ['piz = piz.piz:main']
     },
     version='v0.1',
+    install_requires=[
+        'beautifulsoup4',
+        'google-api-python-client',
+        'requests'
+    ],
     description="Get that track you want.",
     long_description=long_description,
     author="Matthew Medal",
